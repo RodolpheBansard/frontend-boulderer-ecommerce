@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary : #2E7DF0;
+$dark : #151414;
+$grey500: #777474;
+$grey200: #e1e1e1;
+$grey100: #f7f7f7;
+$white: #ffffff;
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
