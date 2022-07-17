@@ -1,0 +1,5 @@
+<div class="cart-status" (click)="navigateToCart()">
+  <img src="assets/icons/cart.svg">
+  <label *ngIf="productNumber > 0" class="article-number">{{productNumber }}</label>
+  <label class="cart-price">{{cartPrice | number: '1.2-2'}}€</label>
+</div>
