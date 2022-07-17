@@ -7,6 +7,7 @@ export  interface Product{
   name:string;
   description:string;
   unitPrice:number;
+  sizes:string;
   imageUrl:string;
   active:boolean;
   unitsInStock:number;

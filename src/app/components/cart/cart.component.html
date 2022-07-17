@@ -1,0 +1,24 @@
+<div class="cart-container">
+  <h1>Shopping Cart</h1>
+  <div *ngFor="let item of cart; let index = index" class="cart-item-card">
+    <div class="cart-container-left">
+      <img class="cart-item-image" src="{{item.product.imageUrl}}">
+      <div>
+        <h3>{{item.product.name}}</h3>
+        <span>{{item.product.sku}}</span>
+      </div>
+    </div>
+    <div class="cart-container-right">
+      <span>{{item.product.unitPrice}}</span>
+      <img (click)="deleteItemFromCart(index)" class="delete-icon" src="assets/icons/delete.svg">
+    </div>
+  </div>
+  <hr>
+  <div class="total">
+    <h1>Total</h1>
+    <h1>{{cartPrice}}€</h1>
+  </div>
+  <div *ngIf="cart.length > 0" class="button-container">
+    <button (click)="goToCheckoutPage()">Validate</button>
+  </div>
+</div>

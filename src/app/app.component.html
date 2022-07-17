@@ -1,1 +1,22 @@
-<app-product-list></app-product-list>
+<div class="container">
+  <div class="header">
+    <div class="logo-container" routerLink="">
+      <img src="assets/icons/logo.png">
+      <h1>Boulderer</h1>
+    </div>
+    <div class="product-search">
+      <input class="search-input" placeholder="search">
+      <img src="assets/icons/search.svg">
+    </div>
+    <app-cart-status></app-cart-status>
+  </div>
+  <div class="products-container">
+    <app-product-category-list></app-product-category-list>
+    <div style="width: 100%">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
+
+

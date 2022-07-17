@@ -1,0 +1,17 @@
+<div *ngIf="product">
+  <div class="product-datails-container">
+    <img src="{{product.imageUrl}}">
+    <h1>{{product.name}}</h1>
+    <h3>{{productPrice}}€</h3>
+    <div *ngIf="productSizes.length > 0" class="sizes-container">
+      <label>Size</label>
+      <label class="size" (click)="selectPrice(size)" [ngStyle]="{'border':size.price === productPrice ? '2px solid #2E7DF0' : 'none'}" *ngFor="let size of productSizes">{{size.size}}</label>
+    </div>
+    <button (click)="addProductToCart(product)">Add To Cart</button>
+  </div>
+  <hr>
+  <div class="product-datails-container">
+    <h1>Description</h1>
+    <p>{{product.description}}</p>
+  </div>
+</div>

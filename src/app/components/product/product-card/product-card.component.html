@@ -1,0 +1,11 @@
+<div class="product-card">
+  <div (click)="onProduct()" [style.background-image]="'url(../../../' + product.imageUrl + ')'" class="product-image"></div>
+  <div (click)="onProduct()" class="card-infos">
+    <h4>{{product.name}}</h4>
+    <span>chalk</span>
+  </div>
+  <div class="price-and-actions">
+    <h4 class="price">{{product.unitPrice}}€</h4>
+    <button (click)="addProductToCart(product)">Add To Cart</button>
+  </div>
+</div>

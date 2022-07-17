@@ -1,29 +1,52 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Product} from "../models/product";
 import {map} from "rxjs/operators";
+import {ProductCategory} from "../models/product-category";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = "http://localhost:8080/api/products";
+  private baseUrl = "http://localhost:8080/api/";
 
-  constructor(private http: HttpClient) { }
 
-  getProductList(): Observable<Product[]>{
-    return this.http.get<GetResponse>(this.baseUrl).pipe(
+  constructor(private http: HttpClient) {}
+
+
+  getProductListByProductCategory(categoryId: number): Observable<Product[]>{
+    console.log(categoryId)
+    return this.http.get<GetResponseProduct>(this.baseUrl + 'products/search/findByCategoryId?id='+categoryId).pipe(
       map((response) => {
-        console.log(response)
+        console.log(response._embedded.products)
         return response._embedded.products;
       })
     );
   }
+
+  getProduct(productId:number): Observable<Product>{
+    return this.http.get<Product>(this.baseUrl + 'products/' +productId);
+  }
+
+  getProductCategory(): Observable<ProductCategory[]>{
+    return this.http.get<GetResponseProductCategory>(this.baseUrl + 'product-category').pipe(
+      map((response) => {
+        return response._embedded.productCategory;
+      })
+    );
+  }
+
 }
 
-interface GetResponse{
+interface GetResponseProduct{
   _embedded:{
     products:Product[];
+  }
+}
+
+interface GetResponseProductCategory{
+  _embedded:{
+    productCategory:ProductCategory[];
   }
 }
