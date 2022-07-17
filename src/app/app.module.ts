@@ -11,6 +11,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ProductCardComponent } from './components/product/product-card/product-card.component';
 import { ProductCategoryListComponent } from './components/product-category-list/product-category-list.component';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,11 +24,12 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
     ProductCategoryListComponent,
     CartStatusComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

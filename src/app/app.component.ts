@@ -12,6 +12,5 @@ import {getData} from "country-list";
 })
 export class AppComponent {
   constructor() {
-    console.log(getData())
   }
 }

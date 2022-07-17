@@ -1,38 +1,38 @@
-<div class="checkout-container">
+<div [formGroup]="myForm" class="checkout-container">
   <h1>Shipping</h1>
   <div class="form-card">
     <div class="form-line">
-      <div class="form-input">
+      <div [ngClass]="{'error': !fullName?.valid && fullName?.touched}" class="form-input">
         <label>Full Name</label>
-        <input>
+        <input formControlName="fullName">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !email?.valid && email?.touched}" class="form-input">
         <label>Email</label>
-        <input>
+        <input formControlName="email">
       </div>
     </div>
     <div class="form-line">
-      <div class="form-input">
-        <label>Adress</label>
-        <input>
+      <div [ngClass]="{'error': !address?.valid && address?.touched}" class="form-input">
+        <label>Address</label>
+        <input formControlName="address">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !phone?.valid && phone?.touched}" class="form-input">
         <label>Phone</label>
-        <input>
+        <input formControlName="phone">
       </div>
     </div>
-    <div class="form-line">
-      <div class="form-input">
+    <div  class="form-line">
+      <div [ngClass]="{'error': !city?.valid && city?.touched}" class="form-input">
         <label>City</label>
-        <input>
+        <input formControlName="city">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !zipCode?.valid && zipCode?.touched}" class="form-input">
         <label>Zip Code</label>
-        <input>
+        <input formControlName="zipCode">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !country?.valid && country?.touched}" class="form-input">
         <label>Country</label>
-        <input>
+        <input formControlName="country">
       </div>
     </div>
   </div>
@@ -41,32 +41,32 @@
 
   <div class="form-card">
     <div class="form-line">
-      <div class="form-input">
+      <div [ngClass]="{'error': !nameOnCard?.valid && nameOnCard?.touched}" class="form-input">
         <label>Name On Card</label>
-        <input>
+        <input formControlName="nameOnCard">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !cardNumber?.valid && cardNumber?.touched}" class="form-input">
         <label>Card Number</label>
-        <input>
+        <input formControlName="cardNumber">
       </div>
     </div>
-    <div class="form-line">
-      <div class="form-input">
+    <div  class="form-line">
+      <div [ngClass]="{'error': !expMonth?.valid && expMonth?.touched}" class="form-input">
         <label>Exp Month</label>
-        <input>
+        <input formControlName="expMonth">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !expYear?.valid && expYear?.touched}" class="form-input">
         <label>Exp Year</label>
-        <input>
+        <input formControlName="expYear">
       </div>
-      <div class="form-input">
+      <div [ngClass]="{'error': !securityCode?.valid && securityCode?.touched}" class="form-input">
         <label>Security Code</label>
-        <input>
+        <input formControlName="securityCode">
       </div>
     </div>
   </div>
 
   <div  class="button-container">
-    <button >Validate</button>
+    <button (click)="onSubmit()">Purchase</button>
   </div>
 </div>
