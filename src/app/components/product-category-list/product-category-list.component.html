@@ -1,0 +1,4 @@
+<div class="categories">
+  <h2>Categories</h2>
+  <p style="cursor: pointer" *ngFor="let category of categories" routerLink="products/category/{{category.id}}">{{category.categoryName}}</p>
+</div>
