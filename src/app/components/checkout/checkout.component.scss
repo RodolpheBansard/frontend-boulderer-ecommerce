@@ -74,3 +74,12 @@ button{
 button:hover{
   transform: scale(1.05);
 }
+button.disabled{
+  cursor: not-allowed;
+  transition: none;
+  background: lightgray;
+}
+
+button.disabled:hover{
+  transform:none;
+}

@@ -25,7 +25,6 @@ export class ProductComponent{
               private activatedRoute: ActivatedRoute) {
     const productId = this.activatedRoute.snapshot.params.id;
     this.productService.getProduct(productId).subscribe((data) => {
-      console.log(data);
       this.product = data;
       if(data.sizes){
         this.getProductSizes(data.sizes);
@@ -49,10 +48,7 @@ export class ProductComponent{
   }
 
   selectPrice(productSize: ProductSize){
-    console.log(productSize.price === this.productPrice)
     this.productPrice = productSize.price;
-
-    console.log(this.productPrice)
   }
 
   addProductToCart(product: Product){

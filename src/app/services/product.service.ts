@@ -16,10 +16,8 @@ export class ProductService {
 
 
   getProductListByProductCategory(categoryId: number): Observable<Product[]>{
-    console.log(categoryId)
     return this.http.get<GetResponseProduct>(this.baseUrl + 'products/search/findByCategoryId?id='+categoryId).pipe(
       map((response) => {
-        console.log(response._embedded.products)
         return response._embedded.products;
       })
     );

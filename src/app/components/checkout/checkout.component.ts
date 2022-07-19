@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CheckoutService} from "../../services/checkout.service";
+import {Address} from "../../models/address";
+import {Customer} from "../../models/customer";
+import {Order} from "../../models/order";
+import {OrderItem} from "../../models/order-item";
+import {Purchase} from "../../models/purchase";
+import {CartItem, CartService} from "../../services/cart.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-checkout',
@@ -10,26 +18,51 @@ export class CheckoutComponent {
 
   myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  cart: CartItem[] = []
+  cartPrice: number = 0;
+
+  constructor(private cartService: CartService,
+              private http: HttpClient,
+              private fb: FormBuilder,
+              private checkoutService: CheckoutService) {
+    this.cartService.cart$.subscribe((cartItems)=>{
+      this.cart = cartItems;
+    })
+    cartService.cartPrice$.subscribe((cartPrice)=> {
+      this.cartPrice = cartPrice;
+    })
+
     this.myForm = this.fb.group({
       fullName: ['', [Validators.required]],
-      email: ['',Validators.required],
-      address:['', Validators.required],
-      phone:['', Validators.required],
-      city:['', Validators.required],
-      zipCode:['', Validators.required],
-      country:['', Validators.required],
-      nameOnCard:['',Validators.required],
-      cardNumber:['',Validators.required],
-      expMonth:['',Validators.required],
-      expYear:['',Validators.required],
-      securityCode:['',Validators.required],
+      email: [''],
+      street:[''],
+      phone:[''],
+      city:[''],
+      zipCode:[''],
+      country:[''],
+      nameOnCard:[''],
+      cardNumber:[''],
+      expMonth:[''],
+      expYear:[''],
+      securityCode:[''],
     })
   }
 
   onSubmit(){
-    console.log(this.myForm.value)
-    console.log(this.myForm.valid)
+    let address = new Address(this.myForm.get('street')?.value,this.myForm.get('city')?.value,this.myForm.get('country')?.value,this.myForm.get('zipCode')?.value);
+
+    let customer = new Customer(this.myForm.get('fullName')?.value,this.myForm.get('phone')?.value,this.myForm.get('email')?.value);
+
+    let order = new Order(this.cartPrice,this.cart.length);
+
+    let orderItems : OrderItem[] = [];
+    this.cart.forEach((cartItem) => {
+      orderItems.push(new OrderItem(cartItem.product.imageUrl,cartItem.quantity,cartItem.product.unitPrice,cartItem.product.id));
+    })
+
+    let purchase = new Purchase(customer,address,address,order,orderItems);
+
+    this.checkoutService.checkout(purchase);
   }
 
   get fullName(){
@@ -38,8 +71,8 @@ export class CheckoutComponent {
   get email(){
     return this.myForm.get('email')
   }
-  get address(){
-    return this.myForm.get('address')
+  get street(){
+    return this.myForm.get('street')
   }
   get phone(){
     return this.myForm.get('phone')

@@ -12,9 +12,9 @@
       </div>
     </div>
     <div class="form-line">
-      <div [ngClass]="{'error': !address?.valid && address?.touched}" class="form-input">
-        <label>Address</label>
-        <input formControlName="address">
+      <div [ngClass]="{'error': !street?.valid && street?.touched}" class="form-input">
+        <label>Street</label>
+        <input formControlName="street">
       </div>
       <div [ngClass]="{'error': !phone?.valid && phone?.touched}" class="form-input">
         <label>Phone</label>
@@ -67,6 +67,6 @@
   </div>
 
   <div  class="button-container">
-    <button (click)="onSubmit()">Purchase</button>
+    <button [ngClass]="{'disabled': !myForm.valid}" [disabled]="!myForm.valid" (click)="onSubmit()">Purchase</button>
   </div>
 </div>

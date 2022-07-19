@@ -43,7 +43,6 @@ export class CartService {
   }
 
   incrementQuantity(product: Product){
-    console.log("increment");
     this.cart$.getValue().forEach((cartItem) => {
       if(product === cartItem.product){
         cartItem.quantity++;
